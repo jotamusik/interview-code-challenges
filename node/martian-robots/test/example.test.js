@@ -12,16 +12,42 @@ describe('Mars Planet', () => {
   });
 });
 
+describe('Position', () => {
+  test('Should have a x coordinate', () => {
+    let x = 2;
+    let y = 3;
+    let orientation = 'N';
+    let position = new Position(x, y, orientation);
+
+    expect(position.getX()).toBe(x);
+  });
+  test('Should have a y coordinate', () => {
+    let x = 2;
+    let y = 3;
+    let orientation = 'N';
+    let position = new Position(x, y, orientation);
+
+    expect(position.getY()).toBe(y);
+  });
+  test('Should have an orientation', () => {
+    let x = 2;
+    let y = 3;
+    let orientation = 'N';
+    let position = new Position(x, y, orientation);
+
+    expect(position.getOrientation()).toBe(orientation);
+  });
+});
+
 describe('Robot', () => {
   test('Should have a position', () => {
-    let position = {
-      x: 1,
-      y: 2,
-      orientation: 'N',
-    };
+    let x = 2;
+    let y = 3;
+    let orientation = 'N';
+    let position = new Position(x, y, orientation);
     let robot = new Robot(position);
-    expect(robot.getPosition().getX()).toBe(position.x);
-    expect(robot.getPosition().getY()).toBe(position.y);
-    expect(robot.getPosition().getOrientation()).toBe(position.orientation);
+    expect(robot.getPosition().getX()).toBe(x);
+    expect(robot.getPosition().getY()).toBe(y);
+    expect(robot.getPosition().getOrientation()).toBe(orientation);
   });
 });
