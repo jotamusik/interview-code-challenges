@@ -23,6 +23,22 @@ export const Position = ( x, y, orientation ) => {
       }
       _orientation = Orientations[ orientationIndex % Orientations.length ];
     }
+    if ( movement === 'F' ) {
+      switch ( _orientation ) {
+        case 'N':
+          _y += 1;
+          break;
+        case 'E':
+          _x += 1;
+          break;
+        case 'S':
+          _y -= 1;
+          break;
+        case 'W':
+          _x -= 1;
+          break;
+      }
+    }
   };
 
   return {
