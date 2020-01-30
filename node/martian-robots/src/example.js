@@ -6,4 +6,4 @@ export function Mars(width, height) {
     getHeight: () => _height,
     getWidth: () => _width,
   };
-}
+};
