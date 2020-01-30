@@ -37,6 +37,42 @@ describe('Position', () => {
 
     expect(position.getOrientation()).toBe(orientation);
   });
+  test('Should move forward', () => {
+    let x = 2;
+    let y = 3;
+    let orientation = 'N';
+    let position = new Position(x, y, orientation);
+
+    position.move('F');
+
+    expect(position.getX()).toBe(x);
+    expect(position.getY()).toBe( (y + 1) );
+    expect(position.getOrientation()).toBe(orientation);
+  });
+  test('Should move left', () => {
+    let x = 2;
+    let y = 3;
+    let orientation = 'N';
+    let position = new Position(x, y, orientation);
+
+    position.move('L');
+
+    expect(position.getX()).toBe(x);
+    expect(position.getY()).toBe(y);
+    expect(position.getOrientation()).toBe('W');
+  });
+  test('Should move right', () => {
+    let x = 2;
+    let y = 3;
+    let orientation = 'N';
+    let position = new Position(x, y, orientation);
+
+    position.move('L');
+
+    expect(position.getX()).toBe(x);
+    expect(position.getY()).toBe(y);
+    expect(position.getOrientation()).toBe('E');
+  });
 });
 
 describe('Robot', () => {
