@@ -1,11 +1,12 @@
 import fs from 'fs';
+import { MartianRobotsGame } from "../src/MartianRobotsGame";
 
 describe("MartianRobotsGame", () => {
   test("Should Work Fine", () => {
-    let input = fs.readFileSync('./sampleInput.txt');
-    let output = new MartianRobotsGame(input);
-    let expectedOutput = fs.readFileSync('./sampleOutput.txt');
+    let input = fs.readFileSync('./test/sampleInput.txt');
+    let output = new MartianRobotsGame(input.toString());
+    let expectedOutput = fs.readFileSync('./test/sampleOutput.txt');
 
-    expect(output).toBe(expectedOutput);
+    expect(output).toBe(expectedOutput.toString());
   });
 });
