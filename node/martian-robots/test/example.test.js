@@ -64,14 +64,14 @@ describe('Position', () => {
   test('Should move right', () => {
     let x = 2;
     let y = 3;
-    let orientation = 'N';
+    let orientation = 'W';
     let position = new Position(x, y, orientation);
 
-    position.move('L');
+    position.move('R');
 
     expect(position.getX()).toBe(x);
     expect(position.getY()).toBe(y);
-    expect(position.getOrientation()).toBe('E');
+    expect(position.getOrientation()).toBe('N');
   });
 });
 
