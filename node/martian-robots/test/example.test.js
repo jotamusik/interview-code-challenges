@@ -1,4 +1,4 @@
-import { Mars } from "../src/example";
+import { Mars, Position } from "../src/example";
 
 
 describe('Mars Planet', () => {
