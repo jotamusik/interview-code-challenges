@@ -13,7 +13,15 @@ describe('Mars Planet', () => {
 });
 
 describe('Robot', () => {
-  test('Should ', () => {
-
+  test('Should have a position', () => {
+    let position = {
+      x: 1,
+      y: 2,
+      orientation: 'N',
+    };
+    let robot = new Robot(position);
+    expect(robot.getPosition().getX()).toBe(position.x);
+    expect(robot.getPosition().getY()).toBe(position.y);
+    expect(robot.getPosition().getOrientation()).toBe(position.orientation);
   });
 });
