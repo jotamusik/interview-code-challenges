@@ -19,9 +19,13 @@ describe('Robot', () => {
 
     const planet = {
       hasSomeoneLostHere: jest.fn((x, y) => {
-        if (x === 2 && y === 3) return false;
+        if ( x === 2 && y === 3 ) {
+          return false;
+        }
       }),
       setLostHere: jest.fn(),
+      getWidth: () => 6,
+      getHeight: () => 4,
     };
     expect(robot.startMission(mission, planet)).toBe('2 3 N LOST');
   });
@@ -44,28 +48,23 @@ describe('Robot', () => {
     let orientation = 'N';
     let robot = new Robot(x, y, orientation);
     const mission = 'R';
-    const planet = jest.fn(() => {
-      return {
-        hasSomeoneLostHere: () => false,
-      }
-    });
+    const planet = {
+      hasSomeoneLostHere: () => false,
+    };
     expect(robot.startMission(mission, planet)).toBe('2 3 E');
   });
-
   test('should do a mission', () => {
     let x = 3;
     let y = 2;
     let orientation = 'N';
     let robot = new Robot(x, y, orientation);
     const mission = 'FRRFLLFFRRFLL';
-    const planet = jest.fn(() => {
-      return {
-        setLostHere: jest.fn(),
-        hasSomeoneLostHere: () => false,
-        getWidth: () => 5,
-        getHeight: () => 3,
-      }
-    });
+    const planet = {
+      setLostHere: jest.fn(),
+      hasSomeoneLostHere: () => false,
+      getWidth: () => 6,
+      getHeight: () => 4,
+    };
     expect(robot.startMission(mission, planet)).toBe('3 3 N LOST');
   });
 });

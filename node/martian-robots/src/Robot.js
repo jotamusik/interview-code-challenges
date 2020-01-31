@@ -21,7 +21,7 @@ export const Robot = (x, y, orientation) => {
     _orientation = Orientations[orientationIndex % Orientations.length];
   };
 
-  const _moveForward = () => {
+  const _getNextPosition = () => {
     let nextX = _x;
     let nextY = _y;
     switch ( _orientation ) {
@@ -41,10 +41,23 @@ export const Robot = (x, y, orientation) => {
     return { nextX, nextY };
   };
 
+  const _moveForward = planet => {
+    const { nextX, nextY } = _getNextPosition();
+    if ( nextX >= planet.getWidth() || nextY >= planet.getHeight() ) {
+      if ( !planet.hasSomeoneLostHere(_x, _y) ) {
+        planet.setLostHere(_x, _y);
+        _isLost = true;
+      }
+    }
+    else {
+      _x = nextX;
+      _y = nextY;
+    }
+  };
+
   const showLostStatus = () => _isLost ? ' LOST' : '';
 
   const startMission = (mission, planet) => {
-    console.log(planet.hasSomeoneLostHere(_x, _y));
     const steps = mission.split('');
     for ( let movement of steps ) {
       if ( !_isLost ) {
@@ -55,18 +68,7 @@ export const Robot = (x, y, orientation) => {
           _moveLeft();
         }
         if ( movement === 'F' ) {
-          const { nextX, nextY } = _moveForward();
-          if ( nextX >= planet.getWidth() || nextY >= planet.getHeight() ) {
-            console.log(`${nextX} ${nextY}`);
-            if ( !planet.hasSomeoneLostHere(_x, _y) ) {
-              planet.setLostHere(_x, _y);
-              _isLost = true;
-            }
-          }
-          else {
-            _x = nextX;
-            _y = nextY;
-          }
+          _moveForward(planet);
         }
       }
     }
