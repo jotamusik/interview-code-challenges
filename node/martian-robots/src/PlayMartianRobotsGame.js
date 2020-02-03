@@ -15,6 +15,7 @@ export const PlayMartianRobotsGame = (input) => {
   };
 
   const mars = Mars(width + 1, height + 1);
+  mars.initPlanet();
   let missionStatus = [];
 
   for ( let robotIndex = 1; robotIndex < lines.length; robotIndex+=2 ) {
