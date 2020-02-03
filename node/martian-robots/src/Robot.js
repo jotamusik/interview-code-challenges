@@ -41,7 +41,10 @@ export const Robot = (x, y, orientation) => {
 
   const moveForward = planet => {
     const { nextX, nextY } = getNextPosition();
-    if ( nextX >= planet.getWidth() || nextY >= planet.getHeight() ) {
+
+    const isGettingLost = nextX >= planet.getWidth() || nextY >= planet.getHeight();
+
+    if ( isGettingLost ) {
       if ( !planet.hasSomeoneLostHere(x, y) ) {
         planet.setLostHere(x, y);
         isLost = true;
