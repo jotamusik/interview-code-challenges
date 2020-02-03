@@ -1,30 +1,27 @@
 const Orientations = [ 'N', 'E', 'S', 'W' ];
 
 export const Robot = (x, y, orientation) => {
-  let _x = x;
-  let _y = y;
-  let _orientation = orientation;
-  let _isLost = false;
+  let isLost = false;
 
-  const _moveRight = () => {
-    _orientation = Orientations[( Orientations.indexOf(_orientation) + 1 ) % Orientations.length];
+  const moveRight = () => {
+    orientation = Orientations[( Orientations.indexOf(orientation) + 1 ) % Orientations.length];
   };
 
-  const _moveLeft = () => {
-    let orientationIndex = Orientations.indexOf(_orientation);
+  const moveLeft = () => {
+    let orientationIndex = Orientations.indexOf(orientation);
     if ( orientationIndex === 0 ) {
       orientationIndex = Orientations.length - 1;
     }
     else {
       orientationIndex -= 1;
     }
-    _orientation = Orientations[orientationIndex % Orientations.length];
+    orientation = Orientations[orientationIndex % Orientations.length];
   };
 
-  const _getNextPosition = () => {
-    let nextX = _x;
-    let nextY = _y;
-    switch ( _orientation ) {
+  const getNextPosition = () => {
+    let nextX = x;
+    let nextY = y;
+    switch ( orientation ) {
       case 'N':
         nextY += 1;
         break;
@@ -41,41 +38,41 @@ export const Robot = (x, y, orientation) => {
     return { nextX, nextY };
   };
 
-  const _moveForward = planet => {
-    const { nextX, nextY } = _getNextPosition();
+  const moveForward = planet => {
+    const { nextX, nextY } = getNextPosition();
     if ( nextX >= planet.getWidth() || nextY >= planet.getHeight() ) {
-      if ( !planet.hasSomeoneLostHere(_x, _y) ) {
-        planet.setLostHere(_x, _y);
-        _isLost = true;
+      if ( !planet.hasSomeoneLostHere(x, y) ) {
+        planet.setLostHere(x, y);
+        isLost = true;
       }
     }
     else {
-      _x = nextX;
-      _y = nextY;
+      x = nextX;
+      y = nextY;
     }
   };
 
-  const showLostStatus = () => _isLost ? ' LOST' : '';
+  const showLostStatus = () => isLost ? ' LOST' : '';
 
   const startMission = (mission, planet) => {
     const steps = mission.split('');
     const typeMovementRelation = {
-      ['R']: _moveRight,
-      ['L']: _moveLeft,
-      ['F']: _moveForward
+      ['R']: moveRight,
+      ['L']: moveLeft,
+      ['F']: moveForward
     };
     for ( let movement of steps ) {
-      if ( !_isLost ) {
+      if ( !isLost ) {
         typeMovementRelation[movement](planet);
       }
     }
-    return `${_x} ${_y} ${_orientation}${showLostStatus()}`;
+    return `${x} ${y} ${orientation}${showLostStatus()}`;
   };
 
   return {
-    getX: () => _x,
-    getY: () => _y,
-    getOrientation: () => _orientation,
+    getX: () => x,
+    getY: () => y,
+    getOrientation: () => orientation,
     startMission,
   };
 };
