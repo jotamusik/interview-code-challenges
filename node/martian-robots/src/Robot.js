@@ -4,7 +4,7 @@ export const Robot = (x, y, orientation) => {
   let isLost = false;
 
   const moveRight = () => {
-    // ToDO: Explicar var newarray = array.slice().reverse();
+    // This code is not symmetric to moveLeft because of performance reason
     orientation = Orientations[( Orientations.indexOf(orientation) + 1 ) % Orientations.length];
   };
 
