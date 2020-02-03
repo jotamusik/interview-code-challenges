@@ -4,8 +4,8 @@ import { Mars } from "./Mars";
 
 export const PlayMartianRobotsGame = (input) => {
   let lines = input.split('\n');
-  let width = parseInt(lines[0].split(' ')[0]);
-  let height = parseInt(lines[0].split(' ')[1]);
+  let width = Number(lines[0].split(' ')[0]);
+  let height = Number(lines[0].split(' ')[1]);
 
   const _getRobotInfo = (lines, robotIndex) => {
     let x = lines[robotIndex].split(' ')[0];
