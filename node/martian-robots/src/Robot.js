@@ -59,20 +59,17 @@ export const Robot = (x, y, orientation) => {
 
   const startMission = (mission, planet) => {
     const steps = mission.split('');
+    const typeMovementRelation = {
+      ['R']: _moveRight,
+      ['L']: _moveLeft,
+      ['F']: _moveForward
+    };
     for ( let movement of steps ) {
       if ( !_isLost ) {
-        if ( movement === 'R' ) {
-          _moveRight();
-        }
-        if ( movement === 'L' ) {
-          _moveLeft();
-        }
-        if ( movement === 'F' ) {
-          _moveForward(planet);
-        }
+        typeMovementRelation[movement](planet);
       }
     }
-    return `${_x} ${_y} ${_orientation}${showLostStatus()}`
+    return `${_x} ${_y} ${_orientation}${showLostStatus()}`;
   };
 
   return {
