@@ -1,7 +1,7 @@
 
 export const Mars = (width, height) => {
 
-  let map = [];
+  const map = [];
 
   const initPlanet = () => {
     for ( let i = 0; i < width; i++ ) {

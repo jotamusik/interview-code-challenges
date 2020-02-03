@@ -3,26 +3,26 @@ import { Mars } from "./Mars";
 
 
 export const PlayMartianRobotsGame = (input) => {
-  let lines = input.split('\n');
-  let width = Number(lines[0].split(' ')[0]);
-  let height = Number(lines[0].split(' ')[1]);
+  const lines = input.split('\n');
+  const width = Number(lines[0].split(' ')[0]);
+  const height = Number(lines[0].split(' ')[1]);
 
-  const _getRobotInfo = (lines, robotIndex) => {
-    let x = lines[robotIndex].split(' ')[0];
-    let y = lines[robotIndex].split(' ')[1];
-    let orientation = lines[robotIndex].split(' ')[2];
+  const getRobotInfo = (lines, robotIndex) => {
+    const x = Number(lines[robotIndex].split(' ')[0]);
+    const y = Number(lines[robotIndex].split(' ')[1]);
+    const orientation = lines[robotIndex].split(' ')[2];
     return { x, y, orientation };
   };
 
   const mars = Mars(width + 1, height + 1);
   mars.initPlanet();
-  let missionStatus = [];
+  const missionStatus = [];
 
-  for ( let robotIndex = 1; robotIndex < lines.length; robotIndex+=2 ) {
-    let { x, y, orientation } = _getRobotInfo(lines, robotIndex);
-    let mission = lines[robotIndex+1];
-
-    let robot = Robot(x, y, orientation);
+  const linesToReadPerRobot = 2;
+  for ( let i = 1; i < lines.length; i+=linesToReadPerRobot ) {
+    const { x, y, orientation } = getRobotInfo(lines, i);
+    const mission = lines[i+1];
+    const robot = Robot(x, y, orientation);
     missionStatus.push(robot.startMission(mission, mars));
   }
   return missionStatus.join('\n');

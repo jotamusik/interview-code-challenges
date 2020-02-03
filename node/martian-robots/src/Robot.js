@@ -1,8 +1,8 @@
 const Orientations = [ 'N', 'E', 'S', 'W' ];
 
 export const Robot = (x, y, orientation) => {
-  let _x = parseInt(x);
-  let _y = parseInt(y);
+  let _x = x;
+  let _y = y;
   let _orientation = orientation;
   let _isLost = false;
 
