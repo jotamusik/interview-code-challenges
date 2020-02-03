@@ -4,6 +4,7 @@ export const Robot = (x, y, orientation) => {
   let isLost = false;
 
   const moveRight = () => {
+    // ToDO: Explicar var newarray = array.slice().reverse();
     orientation = Orientations[( Orientations.indexOf(orientation) + 1 ) % Orientations.length];
   };
 
@@ -56,14 +57,14 @@ export const Robot = (x, y, orientation) => {
 
   const startMission = (mission, planet) => {
     const steps = mission.split('');
-    const typeMovementRelation = {
+    const perform = {
       ['R']: moveRight,
       ['L']: moveLeft,
       ['F']: moveForward
     };
     for ( let movement of steps ) {
       if ( !isLost ) {
-        typeMovementRelation[movement](planet);
+        perform[movement](planet);
       }
     }
     return `${x} ${y} ${orientation}${showLostStatus()}`;
