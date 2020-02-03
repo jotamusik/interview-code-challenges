@@ -1,12 +1,10 @@
 
 export const Mars = (width, height) => {
-  let _width = parseInt(width);
-  let _height = parseInt(height);
 
   let _map = [];
-  for ( let i = 0; i < _width; i++ ) {
+  for ( let i = 0; i < width; i++ ) {
     _map[i] = [];
-    for ( let j = 0; j < _height; j++ ) {
+    for ( let j = 0; j < height; j++ ) {
       _map[i][j] = false;
     }
   }
@@ -15,8 +13,8 @@ export const Mars = (width, height) => {
   const setLostHere = (x, y) => _map[x][y] = true;
 
   return {
-    getWidth: () => _width,
-    getHeight: () => _height,
+    getWidth: () => width,
+    getHeight: () => height,
     hasSomeoneLostHere,
     setLostHere,
   };

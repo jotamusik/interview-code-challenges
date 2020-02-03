@@ -2,7 +2,7 @@ import { Robot } from "./Robot";
 import { Mars } from "./Mars";
 
 
-export const MartianRobotsGame = (input) => {
+export const PlayMartianRobotsGame = (input) => {
   let lines = input.split('\n');
   let width = parseInt(lines[0].split(' ')[0]);
   let height = parseInt(lines[0].split(' ')[1]);
